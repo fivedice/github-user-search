@@ -1,0 +1,13 @@
+<mat-list>
+  <mat-list-item *ngFor="let user of users">
+    <img [src]="user.avatar_url"/>
+    <div class="column">
+      <div class="login">
+        {{ user.login }}
+      </div>
+      <a [href]="user.html_url" target="_blank">
+        {{ user.html_url }}
+      </a>
+  </div>
+  </mat-list-item>
+</mat-list>

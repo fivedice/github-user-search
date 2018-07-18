@@ -1,0 +1,25 @@
+<form [formGroup]="searchForm">
+  <mat-form-field>
+    <input matInput placeholder="Username" formControlName="name">
+  </mat-form-field>
+
+  <button mat-button
+          (click)="search()"
+          [disabled]="searchForm.invalid">Search</button>
+</form>
+
+<div *ngIf="(githubService.userCount$ | async) as userCount">
+  <h3 class="mat-h3" *ngIf="userCount; else nodata">
+    Total Users: {{ userCount }}
+  </h3>
+  <ng-template #nodata>
+    No users found for username.
+  </ng-template>
+</div>
+
+<div *ngIf="githubService.userError$ | async"
+     class="error">
+  Error retrieving users.
+</div>
+
+<app-user-list [users]="githubService.users$ | async"></app-user-list>
